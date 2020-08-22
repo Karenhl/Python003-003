@@ -1,3 +1,8 @@
+"""
+使用简单的request库爬取豆瓣页面,
+结合lxml解析页面，xpath提取数据，
+pandas做数据处理
+"""
 import requests
 import lxml.etree
 import pandas as pd
