@@ -1,17 +1,23 @@
+"""
+使用简单的request库爬取豆瓣页面,
+并结合BeautifulSoup提取数据
+"""
+
 import requests
 from bs4 import BeautifulSoup as bs
 
-user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Safari/605.1.15"
+url = "https://movie.douban.com/top250"
+headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"}
+response = requests.get(url=url ,headers=headers)
 
-header = {"user-agent": user_agent}
+b_html = bs(response.text,"html.parser")
 
-myurl = "https://movie.douban.com/top250"
+for tags in b_html.find_all("div", attrs="hd"):
+    for atags in tags.find_all("a"):
+        # 打印a标签的href值
+        print(atags.get("href"), end="\t")
+        # 打印电影名字
+        print(atags.find("span").text)
 
-response = requests.get(myurl, headers=header)
 
-bs_info = bs(response.text, 'html.parser')
 
-for tags in bs_info.find_all('div', attrs={'class': 'hd'}):
-    for atag in tags.find_all('a',):
-        print(atag.get('href'))
-        print(atag.find('span',).text)
