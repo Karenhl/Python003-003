@@ -12,10 +12,9 @@ class MaoyanPipeline:
     def process_item(self, item, spider):
         movie_name = item['movie_name']
         movie_cates = item['movie_cates']
-        movie_release_date = item['movie_release_date']
+        movie_date = item['movie_date']
         
-        # 把字段整合到一个字符串中
-        output = f'|{movie_name}|\t|{movie_cates}|\t|{movie_release_date}|\n\n'
+        output = f'|{movie_name}|\t|{movie_cates}|\t|{movie_date}|\n\n'
 
         with open('./maoyanmovie.txt', 'a+', encoding='utf-8') as f:
             f.write(output)

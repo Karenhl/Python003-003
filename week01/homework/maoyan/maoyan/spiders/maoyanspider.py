@@ -35,10 +35,10 @@ class MaoyanspiderSpider(scrapy.Spider):
         movie_cates = movie_cates[:-1]
 
         # 上映日期
-        movie_release_date = Selector(response=response).xpath('//li[@class="ellipsis"][3]/text()').extract_first()[:10]
+        movie_date = Selector(response=response).xpath('//li[@class="ellipsis"][3]/text()').extract_first()[:10]
         
         # 储存到item
         item['movie_name'] = movie_name
         item['movie_cates'] = movie_cates
-        item['movie_release_date'] = movie_release_date
+        item['movie_date'] = movie_date
         yield item

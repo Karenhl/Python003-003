@@ -7,7 +7,7 @@ import scrapy
 
 
 class MaoyanItem(scrapy.Item):
-    
+
     movie_name = scrapy.Field()
     movie_cates = scrapy.Field()
-    movie_release_date = scrapy.Field()
+    movie_date = scrapy.Field()
