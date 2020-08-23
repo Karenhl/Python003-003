@@ -13,13 +13,12 @@ class MaoyanspiderSpider(scrapy.Spider):
         yield scrapy.Request(url=f'https://maoyan.com/films',callback=self.parse)
 
     def parse(self, response):
-        tags = Selector(response=response).xpath('//div[@class="channel-detail movie-item-title"]')[:10]
+        tags = Selector(response=response).xpath('//div[@class="movie-item film-channel"]')[:10]
         for tag in tags: 
             url = f'https://maoyan.com' + tag.xpath('./a/@href').extract_first()
             yield scrapy.Request(url=url, callback=self.parse2)
         
     def parse2(self, response):
-        Selector(response=response).xpath
         item = MaoyanItem()
 
         # 电影名称
