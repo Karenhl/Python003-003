@@ -8,7 +8,7 @@ dbinfo = {
     "db": "test"
 }
 
-sqls = ["show databases"]
+sqls = ["show databases", "select VERSION()"]
 
 result = []
 
@@ -29,7 +29,7 @@ class DbManager():
             user = self.user,
             password = self.password,
             db = self.db,
-            charset = "utd8mb4"
+            charset = "utf8mb4"
         )
 
         cur = conn.cursor()
@@ -43,7 +43,7 @@ class DbManager():
             conn.commit()
         except:
             conn.rollback()
-        
+        # 关闭数据库联连接
         conn.close()
 
 if __name__ == "__main__":
